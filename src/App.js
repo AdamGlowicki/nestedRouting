@@ -1,26 +1,25 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import {BrowserRouter, Route, Switch} from 'react-router-dom'
+import Main from './Main';
+import Application from './Application';
+import Users from './Users';
+import {Redirect} from 'react-router';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
-}
+const App = props => {
+    return (
+        <div>
+            <BrowserRouter>
+                <Switch>
+                    <Route exact path='/' component={() => <Redirect to='/main'/>}/>
+                    <Route path='/main' component={Main}/>
+                    <Route path='/app' component={Application}/>
+                    <Route path='/users' component={Users}/>
+                </Switch>
+            </BrowserRouter>
+        </div>
+    );
+};
+
+App.propTypes = {};
 
 export default App;
